@@ -19,6 +19,13 @@ from .utils import *
 import csv
 import re
 
+import missinglink
+
+missinglink_callback = missinglink.KerasCallback(project='4662359767384064')
+
+missinglink_callback.set_properties(
+  display_name='Keras neural network',
+  description='Two dimensional convolutional neural network')
 
 class textgenrnn:
     META_TOKEN = '<s>'
@@ -75,18 +82,18 @@ class textgenrnn:
         iterable = trange(n) if progress and n > 1 else range(n)
         for _ in iterable:
             gen_text, _ = textgenrnn_generate(self.model,
-                                           self.vocab,
-                                           self.indices_char,
-                                           temperature,
-                                           self.config['max_length'],
-                                           self.META_TOKEN,
-                                           self.config['word_level'],
-                                           self.config.get(
-                                               'single_text', False),
-                                           max_gen_length,
-                                           interactive,
-                                           top_n,
-                                           prefix)
+                                              self.vocab,
+                                              self.indices_char,
+                                              temperature,
+                                              self.config['max_length'],
+                                              self.META_TOKEN,
+                                              self.config['word_level'],
+                                              self.config.get(
+                                                  'single_text', False),
+                                              max_gen_length,
+                                              interactive,
+                                              top_n,
+                                              prefix)
             if not return_as_list:
                 print("{}\n".format(gen_text))
             gen_texts.append(gen_text)
@@ -95,8 +102,8 @@ class textgenrnn:
 
     def generate_samples(self, n=3, temperatures=[0.2, 0.5, 1.0], **kwargs):
         for temperature in temperatures:
-            print('#'*20 + '\nTemperature: {}\n'.format(temperature) +
-                  '#'*20)
+            print('#' * 20 + '\nTemperature: {}\n'.format(temperature) +
+                  '#' * 20)
             self.generate(n, temperature=temperature, progress=False, **kwargs)
 
     def train_on_texts(self, texts, context_labels=None,
@@ -217,7 +224,8 @@ class textgenrnn:
                                       max_gen_length),
                                   save_model_weights(
                                       self, num_epochs,
-                                      save_epochs)],
+                                      save_epochs),
+                                  missinglink_callback],
                               verbose=verbose,
                               max_queue_size=10,
                               validation_data=gen_val,
