@@ -6,6 +6,7 @@ model_cfg = {
     'max_length': 8,
     # number of tokens to consider before predicting the next (20-40 for characters, 5-10 for words recommended)
     'max_words': 100000,  # maximum number of words to model; the rest will be ignored (word-level model only)
+    "weights_path": "/output"
 }
 
 train_cfg = {
@@ -15,7 +16,8 @@ train_cfg = {
     'train_size': 0.8,  # proportion of input data to train on: setting < 1.0 limits model from learning perfectly
     'dropout': 0.0,  # ignore a random proportion of source tokens each epoch, allowing model to generalize better
     'validation': False,  # If train__size < 1.0, test on holdout dataset; will make overall training slower
-    'is_csv': False  # set to True if file is a CSV exported from Excel/BigQuery/pandas
+    'is_csv': False,  # set to True if file is a CSV exported from Excel/BigQuery/pandas
+    "weights_path": "/output"
 }
 
 file_name = "marathon_terminals.txt"

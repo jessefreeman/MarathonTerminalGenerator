@@ -3,3 +3,4 @@ command:
 org: jessefreeman
 project: 4662359767384064 # jessefreeman org
 queue: Default
+name_prefix: "Marathon Test Job "
