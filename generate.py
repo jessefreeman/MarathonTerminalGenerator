@@ -3,7 +3,7 @@ from datetime import datetime
 from textgenrnn import textgenrnn
 from config import *
 
-model_path = "./output/" + model_name
+model_path = "./weights/" + model_name
 
 textgen = textgenrnn(weights_path=model_path + '_weights.hdf5',
                        vocab_path=model_path + '_vocab.json',
@@ -22,7 +22,7 @@ else:
 timestring = datetime.now().strftime('%Y%m%d_%H%M%S')
 gen_file = '{}_gentext_{}.txt'.format(model_name, timestring)
 
-textgen.generate_to_file("./output/"+gen_file,
+textgen.generate_to_file("./outputs/"+gen_file,
                          temperature=temperature,
                          prefix=prefix,
                          n=n,
