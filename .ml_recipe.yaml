@@ -1,5 +1,5 @@
 command:
-- 'python train.py && generate.py'
+- 'python train.py'
 org: jessefreeman
 project: 4662359767384064 # jessefreeman org
 queue: Default
